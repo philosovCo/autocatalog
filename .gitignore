@@ -1,0 +1,11 @@
+upload/
+src/main/resources/
+src/test/
+target/
+
+
+.idea
+*.iml
+*.ipr
+*.iws
+

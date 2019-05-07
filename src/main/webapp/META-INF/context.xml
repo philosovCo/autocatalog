@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/">
+    <Resource
+            name="jdbc/db"
+            auth="Container"
+            type="javax.sql.DataSource"
+            driverClassName="org.sqlite.JDBC"
+            url="jdbc:sqlite::memory:"
+            closeMethod="close"
+        />
+
+    <Resource
+        name="bean/auto-service"
+        type="ru.itpark.service.AutoService"
+        factory="org.apache.naming.factory.BeanFactory" />
+    <Resource
+        name="bean/csv-service"
+        type="ru.itpark.service.CSVService"
+        factory="org.apache.naming.factory.BeanFactory" />
+    <Resource
+        name="bean/image-service"
+        type="ru.itpark.service.ImageService"
+        factory="org.apache.naming.factory.BeanFactory" />
+    <Resource
+        name="bean/db-template"
+        type="ru.itpark.template.DBTemplate"
+        factory="org.apache.naming.factory.BeanFactory" />
+</Context>
