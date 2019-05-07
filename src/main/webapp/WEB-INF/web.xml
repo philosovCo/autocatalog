@@ -35,6 +35,10 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>catalog</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>catalog</servlet-name>
         <url-pattern>/catalog/details/*</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
