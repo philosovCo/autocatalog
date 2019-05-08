@@ -39,6 +39,6 @@ public class CSVServlet extends HttpServlet {
             throws ServletException, IOException {
         Part file = req.getPart("file_csv");
         service.saveByCsv(file);
-        resp.sendRedirect(req.getContextPath() + "/catalog");
+        resp.sendRedirect(req.getContextPath() );
     }
 }

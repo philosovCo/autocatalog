@@ -32,6 +32,6 @@ public class AutoDeleteServlet extends HttpServlet {
                 service.delete(split[1]);
             }
         }
-        resp.sendRedirect(req.getContextPath() + "/catalog");
+        resp.sendRedirect(req.getContextPath());
     }
 }

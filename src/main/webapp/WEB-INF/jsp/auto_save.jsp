@@ -21,7 +21,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 mx-auto">
-            <form class="mt-3" action="<%= request.getContextPath() %>/catalog/<%= url %>" method="post"
+            <form class="mt-3" action="<%= request.getContextPath() %>/<%= url %>" method="post"
                   enctype="multipart/form-data">
                 <%if (auto != null) {%>
                 <div class="form-group">

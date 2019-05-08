@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col">
             <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
-                <a class="navbar-brand" href="<%= request.getContextPath() %>/catalog">
+                <a class="navbar-brand" href="<%= request.getContextPath() %>">
                     <img src="https://img.icons8.com/clouds/100/000000/fiat-500.png" width="30" height="30"
                          class="d-inline-block align-top" alt="">
                     Auto Catalog
@@ -26,7 +26,7 @@
                     <% if (request.getAttribute("items") != null) { %>
                     <ul class="navbar-nav">
                         <li class="nav-item active">
-                            <a href="<%= request.getContextPath() %>/catalog/new"
+                            <a href="<%= request.getContextPath() %>/new"
                                class="nav-link">New Auto</a>
                         </li>
                         <li class="nav-item dropdown">
@@ -49,7 +49,7 @@
                     </ul>
                     <%}%>
                     <%if (request.getParameter("name") == null) {%>
-                    <form class="form-inline ml-md-auto" action="<%= request.getContextPath() %>/catalog">
+                    <form class="form-inline ml-md-auto" action="<%= request.getContextPath() %>">
                         <input name="name" class="form-control" type="search" placeholder="Search">
                     </form>
                     <%}%>
