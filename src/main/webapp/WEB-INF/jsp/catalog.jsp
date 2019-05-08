@@ -71,8 +71,8 @@
     </div>
     <%}%>
     <div class="row">
-        <% if (request.getAttribute("items") != null) { %>
-        <% for (Auto item : (List<Auto>) request.getAttribute("items")) { %>
+        <% if (request.getAttribute("items") != null) {
+            for (Auto item : (List<Auto>) request.getAttribute("items")) { %>
         <div class="col-sm-6 mt-3">
             <div class="card">
                 <img src="<%= request.getContextPath() %>/images/<%= item.getPicture() %>"
@@ -96,8 +96,10 @@
                 </div>
             </div>
         </div>
-        <% } %>
-        <% } %>
+        <% }
+        } else { %>
+            <h1>Nothing found</h1>
+        <%}%>
     </div>
 </div>
 
