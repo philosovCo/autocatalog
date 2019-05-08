@@ -54,6 +54,6 @@ public class AutoSaveServlet extends HttpServlet {
         auto.setPicture(imageService.write(req.getPart("file")));
         autoService.save(auto);
 
-        resp.sendRedirect(req.getContextPath());
+        resp.sendRedirect(req.getContextPath() + "/");
     }
 }
