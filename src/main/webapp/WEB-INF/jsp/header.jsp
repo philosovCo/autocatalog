@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col">
             <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
-                <a class="navbar-brand" href="<%= request.getContextPath() %>">
+                <a class="navbar-brand" href="<%= request.getContextPath() + "/"%>">
                     <img src="https://img.icons8.com/clouds/100/000000/fiat-500.png" width="30" height="30"
                          class="d-inline-block align-top" alt="">
                     Auto Catalog
