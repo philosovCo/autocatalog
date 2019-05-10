@@ -8,7 +8,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 import org.apache.commons.lang3.StringUtils;
 
 @Data
@@ -18,11 +17,8 @@ import org.apache.commons.lang3.StringUtils;
 public class Auto {
 
     private String id;
-    @NonNull
     private String name;
-    @NonNull
     private String description;
-    @NonNull
     private String picture;
     private String color;
     private String year;
