@@ -62,7 +62,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        Car removal
+                        Import auto from CSV file
                     </div>
                     <div class="modal-body">
                         <form class="mt-3" action="<%= request.getContextPath() %>/csv" method="post" enctype="multipart/form-data">
@@ -74,7 +74,6 @@
                             <button type="submit" class="btn btn-primary mt-2">Import
                             </button>
                         </form>
-
                     </div>
                 </div>
             </div>
