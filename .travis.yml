@@ -1,5 +1,5 @@
 language: java
-jdk: oraclejdk11
+jdk: oraclejdk12
 script: mvn -e verify
 deploy:
   provider: heroku
