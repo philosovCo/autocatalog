@@ -74,8 +74,8 @@
     <div class="row">
         <% List<Auto> autoList = (List<Auto>) request.getAttribute("items");
             if (CollectionUtils.isEmpty(autoList)) { %>
-        <div class="col-sm-6 mt-3">
-            <h1>Nothing found</h1>
+        <div class="col-sm-6 mt-3 mx-auto">
+            <h1 class="text-center">Nothing found</h1>
         </div>
         <% } else {
             for (Auto item : autoList) { %>
