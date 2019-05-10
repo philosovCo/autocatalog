@@ -1,6 +1,7 @@
 <%@ page import="java.util.List" %>
-<%@ page import="ru.itpark.domain.Auto" %>
+<%@ page import="org.apache.commons.collections4.CollectionUtils" %>
 <%@ page import="static org.apache.commons.lang3.StringUtils.*" %>
+<%@ page import="ru.itpark.domain.Auto" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
 <html lang="en">
@@ -71,8 +72,13 @@
     </div>
     <%}%>
     <div class="row">
-        <% if (request.getAttribute("items") != null) {
-            for (Auto item : (List<Auto>) request.getAttribute("items")) { %>
+        <% List<Auto> autoList = (List<Auto>) request.getAttribute("items");
+            if (CollectionUtils.isEmpty(autoList)) { %>
+        <div class="col-sm-6 mt-3">
+            <h1>Nothing found</h1>
+        </div>
+        <% } else {
+            for (Auto item : autoList) { %>
         <div class="col-sm-6 mt-3">
             <div class="card">
                 <img src="<%= request.getContextPath() %>/images/<%= item.getPicture() %>"
@@ -96,10 +102,7 @@
                 </div>
             </div>
         </div>
-        <% }
-        } else { %>
-            <h1>Nothing found</h1>
-        <%}%>
+        <% } %>
     </div>
 </div>
 
