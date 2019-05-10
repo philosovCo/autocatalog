@@ -1,5 +1,5 @@
 language: java
-jdk: $JDK_VERSION
+jdk: openjdk12
 script: mvn -e verify
 deploy:
   provider: heroku
