@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import lombok.NonNull;
 import ru.itpark.domain.Auto;
 
 public class AutoQuery {
@@ -20,11 +21,27 @@ public class AutoQuery {
                 .filter(s -> !"id".equalsIgnoreCase(s))
                 .map(s -> s + "= :" + s)
                 .collect(Collectors.joining(", "));
+        TABLE_FIELDS = fieldsStream.get().map(s -> {
+            StringBuilder field = new StringBuilder(s);
+            field.append(" TEXT");
+            if ("id".equals(s)) {
+                field.append(" PRIMARY KEY");
+            }
+            try {
+                if (Auto.class.getField(s).isAnnotationPresent(NonNull.class)) {
+                    field.append(" NOT NULL");
+                }
+            } catch (NoSuchFieldException e) {
+                e.printStackTrace();
+            }
+            return field;
+        }).collect(Collectors.joining(", "));
     }
 
     private static final String BASE_FIELDS;
     private static final String CREATE_PLACEHOLDERS;
     private static final String UPDATE_PLACEHOLDERS;
+    private static final String TABLE_FIELDS;
     public static final String SELECT_QUERY = "SELECT " + BASE_FIELDS + " FROM auto";
     public static final String INSERT_QUERY =
             "INSERT INTO auto(" + BASE_FIELDS + ") VALUES (" + CREATE_PLACEHOLDERS + ")";
@@ -32,14 +49,6 @@ public class AutoQuery {
             "UPDATE auto SET " + UPDATE_PLACEHOLDERS + " where id = :id";
     public static final String DELETE_QUERY = "DELETE FROM auto where id = :id";
     public static final String CREATE_TABLE_QUERY =
-            "CREATE TABLE IF NOT EXISTS auto(" +
-                    "id TEXT PRIMARY KEY," +
-                    "name TEXT NOT NULL," +
-                    "description TEXT NOT NULL," +
-                    "picture TEXT," +
-                    "color TEXT," +
-                    "year TEXT," +
-                    "transmission TEXT," +
-                    "power TEXT)";
+            "CREATE TABLE IF NOT EXISTS auto (" + TABLE_FIELDS + ")";
 
 }

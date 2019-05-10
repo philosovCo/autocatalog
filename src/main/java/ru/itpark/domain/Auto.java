@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import org.apache.commons.lang3.StringUtils;
 
 @Data
@@ -17,13 +18,17 @@ import org.apache.commons.lang3.StringUtils;
 public class Auto {
 
     private String id;
+    @NonNull
     private String name;
+    @NonNull
+    private String description;
+    @NonNull
+    private String picture;
     private String color;
     private String year;
     private String transmission;
     private String power;
-    private String description;
-    private String picture;
+
 
     public Map<String, Object> toMap() {
         Map<String, Object> map = new HashMap<>();
