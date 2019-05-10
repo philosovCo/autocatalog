@@ -21,21 +21,9 @@ public class AutoQuery {
                 .filter(s -> !"id".equalsIgnoreCase(s))
                 .map(s -> s + "= :" + s)
                 .collect(Collectors.joining(", "));
-        TABLE_FIELDS = fieldsStream.get().map(s -> {
-            StringBuilder field = new StringBuilder(s);
-            field.append(" TEXT");
-            if ("id".equals(s)) {
-                field.append(" PRIMARY KEY");
-            }
-            try {
-                if (Auto.class.getField(s).isAnnotationPresent(NonNull.class)) {
-                    field.append(" NOT NULL");
-                }
-            } catch (NoSuchFieldException e) {
-                e.printStackTrace();
-            }
-            return field;
-        }).collect(Collectors.joining(", "));
+        TABLE_FIELDS = fieldsStream.get().map(s -> s + " TEXT"
+                + ("id".equals(s) ? " PRIMARY KEY" : "")
+                + " NOT NULL").collect(Collectors.joining(", "));
     }
 
     private static final String BASE_FIELDS;
