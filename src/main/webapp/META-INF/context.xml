@@ -21,8 +21,4 @@
         name="bean/image-service"
         type="ru.itpark.service.ImageService"
         factory="org.apache.naming.factory.BeanFactory" />
-    <Resource
-        name="bean/db-template"
-        type="ru.itpark.template.DBTemplate"
-        factory="org.apache.naming.factory.BeanFactory" />
 </Context>
