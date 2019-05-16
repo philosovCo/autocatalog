@@ -45,7 +45,7 @@ public class CSVService {
         outputStream.close();
     }
 
-    public void saveByCsv(Part part) throws IOException {
+    public void saveByCsv(Part part) {
         CSVUtils.read(part).forEach(
                 map -> service
                         .save(Auto.from(map.get("id") == null ? map : updateModel(map)))
@@ -53,14 +53,19 @@ public class CSVService {
     }
 
     public Map<String, Object> updateModel(Map<String, Object> map) {
+        Map<String, Object> autoMap = new HashMap<>();
         List<Auto> autoList = service.getAutoByParams(Map.of("id", map.get("id")));
         map.replace("picture", imageService.getImageByUrl((String) map.get("picture")));
+
         if (isEmpty(autoList)) {
-            map.remove("id");
-            return map;
+            map.forEach((s, o) -> {
+                if (!"id".equals(s)) {
+                    autoMap.put(s, o);
+                }
+            });
+            return autoMap;
         }
 
-        Map<String, Object> autoMap = new HashMap<>();
         autoList.get(0).toMap().forEach((s, o) -> {
             String value = (String) map.get(s);
             autoMap.put(s, (value != null ? value : o));
