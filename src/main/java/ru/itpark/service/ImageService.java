@@ -7,6 +7,8 @@ import static org.apache.commons.io.FilenameUtils.getBaseName;
 import java.io.File;
 import java.io.IOException;
 import java.net.HttpURLConnection;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -19,18 +21,20 @@ import org.apache.commons.io.FileUtils;
 public class ImageService {
 
     private final String UPLOAD_PATH;
-    private final String DEFAULT_IMAGE = "default_image";
+    private final String DEFAULT_IMAGE_NAME = "default_image";
+    private final URI DEFAULT_IMAGE_FILE_PATH;
 
-    public ImageService() throws IOException {
+    public ImageService() throws IOException, URISyntaxException {
         UPLOAD_PATH = System.getenv("UPLOAD_PATH");
+        DEFAULT_IMAGE_FILE_PATH = getClass().getClassLoader()
+                .getResource(DEFAULT_IMAGE_NAME + ".jpg").toURI();
         Files.createDirectories(Paths.get(UPLOAD_PATH));
-        Path path = Paths.get(UPLOAD_PATH).resolve(DEFAULT_IMAGE);
+        Path path = Paths.get(UPLOAD_PATH).resolve(DEFAULT_IMAGE_NAME);
 
         if (!Files.exists(path)) {
-            File file = new File(path.toString());
-            URL url = new URL("https://bezdor4x4.com.ua/uploads/no-image.png");
-            FileUtils.copyURLToFile(url, file);
-
+            FileUtils.copyFile(
+                    Paths.get(DEFAULT_IMAGE_FILE_PATH).toFile(),
+                    Files.createFile(path).toFile());
         }
     }
 
@@ -49,7 +53,7 @@ public class ImageService {
     }
 
     public String getImageByUrl(String picture_url) {
-        String imageName = DEFAULT_IMAGE;
+        String imageName = DEFAULT_IMAGE_NAME;
         try {
             URL url = new URL(picture_url);
 
