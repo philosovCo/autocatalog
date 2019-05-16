@@ -63,9 +63,7 @@ public class AutoService {
                 var stmt = conn.prepareStatement(q);
                 var rs = stmt.executeQuery()) {
             while (rs.next()) {
-                Auto auto = new Auto();
-                auto.toModel((resultSetToMap(rs)));
-                list.add(auto);
+                list.add(Auto.from((resultSetToMap(rs))));
             }
         } catch (SQLException e) {
             e.printStackTrace();

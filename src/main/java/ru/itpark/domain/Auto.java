@@ -39,16 +39,17 @@ public class Auto {
         return map;
     }
 
-    public Auto toModel(Map<String, Object> map) {
-        id = (String) map.get("id");
-        name = (String) map.get("name");
-        year = (String) map.get("year");
-        color = (String) map.get("color");
-        power = (String) map.get("power");
-        transmission = (String) map.get("transmission");
-        description = (String) map.get("description");
-        picture = (String) map.get("picture");
-        return this;
+    public static Auto from(Map<String, Object> map) {
+        Auto auto = new Auto();
+        auto.setId((String) map.get("id"));
+        auto.setName((String) map.get("name"));
+        auto.setYear((String) map.get("year"));
+        auto.setColor((String) map.get("color"));
+        auto.setPower((String) map.get("power"));
+        auto.setTransmission((String) map.get("transmission"));
+        auto.setDescription((String) map.get("description"));
+        auto.setPicture((String) map.get("picture"));
+        return auto;
     }
 
 
