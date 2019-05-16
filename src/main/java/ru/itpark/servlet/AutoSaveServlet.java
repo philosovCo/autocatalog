@@ -49,8 +49,7 @@ public class AutoSaveServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-        Auto auto = new Auto();
-        auto.toModel(toMapWithSingleValue(req.getParameterMap()));
+        Auto auto = Auto.from(toMapWithSingleValue(req.getParameterMap()));
         auto.setPicture(imageService.write(req.getPart("file")));
         autoService.save(auto);
 

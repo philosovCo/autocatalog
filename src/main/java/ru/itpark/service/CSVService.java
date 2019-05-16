@@ -48,7 +48,7 @@ public class CSVService {
     public void saveByCsv(Part part) throws IOException {
         CSVUtils.read(part).forEach(
                 map -> service
-                        .save(new Auto().toModel(map.get("id") == null ? map : updateModel(map)))
+                        .save(Auto.from(map.get("id") == null ? map : updateModel(map)))
         );
     }
 
