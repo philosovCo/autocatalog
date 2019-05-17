@@ -1,8 +1,8 @@
 package ru.itpark.domain;
 
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -27,7 +27,7 @@ public class Auto {
 
 
     public Map<String, Object> toMap() {
-        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> map = new TreeMap<>();
         map.put("id", StringUtils.isNoneBlank(id) ? id : UUID.randomUUID().toString());
         map.put("name", name);
         map.put("year", year);
@@ -51,6 +51,4 @@ public class Auto {
         auto.setPicture((String) map.get("picture"));
         return auto;
     }
-
-
 }

@@ -4,7 +4,6 @@ import static java.net.HttpURLConnection.HTTP_OK;
 import static java.net.HttpURLConnection.setFollowRedirects;
 import static org.apache.commons.io.FilenameUtils.getBaseName;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URI;
@@ -21,7 +20,7 @@ import org.apache.commons.io.FileUtils;
 public class ImageService {
 
     private final String UPLOAD_PATH;
-    private final String DEFAULT_IMAGE_NAME = "default_image";
+    public static final String DEFAULT_IMAGE_NAME = "default_image";
     private final URI DEFAULT_IMAGE_FILE_PATH;
 
     public ImageService() throws IOException, URISyntaxException {
