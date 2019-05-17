@@ -47,7 +47,7 @@ public class AutoService {
         return executeQueryMethod(addFilters(SELECT_QUERY, whereParams));
     }
 
-    public void executeMethod(String q) {
+    private void executeMethod(String q) {
         try (var conn = ds.getConnection();
                 var stmt = conn.prepareStatement(q)) {
             stmt.execute();
@@ -57,32 +57,27 @@ public class AutoService {
         }
     }
 
-    public List<Auto> executeQueryMethod(String q) {
+    private List<Auto> executeQueryMethod(String q) {
         var list = new ArrayList<Auto>();
+
         try (var conn = ds.getConnection();
                 var stmt = conn.prepareStatement(q);
                 var rs = stmt.executeQuery()) {
+
             while (rs.next()) {
-                list.add(Auto.from((resultSetToMap(rs))));
+                var row = new HashMap<String, Object>();
+                var md = rs.getMetaData();
+
+                for (int i = 1; i <= md.getColumnCount(); ++i) {
+                    row.put(md.getColumnName(i), rs.getObject(i));
+                }
+
+                list.add(Auto.from(row));
             }
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException(e); // rethrowing
         }
         return list;
-    }
-
-    private Map<String, Object> resultSetToMap(ResultSet rs) {
-        Map<String, Object> map = new HashMap<>();
-        Arrays.stream(Auto.class.getDeclaredFields())
-                .map(Field::getName)
-                .forEach(field -> {
-                    try {
-                        map.put(field, rs.getString(field));
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                });
-        return map;
     }
 }
